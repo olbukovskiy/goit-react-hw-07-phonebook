@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { FormInput, Label, Button, FormField } from './AddContact.styled';
-import { addNewContact } from 'redux/contactsSlice';
-import { contacts } from 'redux/selectors';
+
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 const initialValues = {
   name: '',
@@ -14,7 +15,7 @@ const initialValues = {
 
 export default function AddContact() {
   const dispatch = useDispatch();
-  const { contacts: contactsList } = useSelector(contacts);
+  const { items: contactsList } = useSelector(selectContacts);
 
   const handleSubmit = ({ name, number }, actions) => {
     const check = contactsList.find(contact => contact.name === name);
@@ -27,7 +28,7 @@ export default function AddContact() {
       return;
     }
 
-    dispatch(addNewContact(name, number));
+    dispatch(addContact({ name, number }));
     actions.resetForm();
   };
   return (
