@@ -15,7 +15,7 @@ export function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
   return (
-    <div>
+    <div className={css.container}>
       <p className={css.sectionHeading}>Phonebook</p>
       <AddContact />
       <p className={css.sectionHeading}>Contacts</p>

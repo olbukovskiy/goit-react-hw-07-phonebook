@@ -6,7 +6,6 @@ export const FormField = styled(Form)`
   justify-content: space-between;
   flex-direction: column;
   padding: 20px 0;
-  width: 560px;
 `;
 
 export const Label = styled.label`
@@ -28,7 +27,6 @@ export const Input = styled.input`
   border-color: rgba(33, 33, 33, 0.2);
   font-size: 18px;
   font-weight: 500;
-
 `;
 
 export const FormInput = styled(Field)`
@@ -42,7 +40,6 @@ export const FormInput = styled(Field)`
   border-color: rgba(33, 33, 33, 0.2);
   font-size: 18px;
   font-weight: 500;
-
 `;
 
 export const Button = styled.button`
