@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
+import { deleteContact } from 'redux/operations';
 
 import { ListItem, Number, Button, TextField } from './Contact.styled';
-import { deleteContact } from 'redux/operations';
-import { useDispatch } from 'react-redux';
 
 export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();

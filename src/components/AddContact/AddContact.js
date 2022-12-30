@@ -3,10 +3,10 @@ import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { FormInput, Label, Button, FormField } from './AddContact.styled';
-
 import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
+
+import { FormInput, Label, Button, FormField } from './AddContact.styled';
 
 const initialValues = {
   name: '',
