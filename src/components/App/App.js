@@ -28,6 +28,7 @@ export function App() {
       <AddContact />
       <p className={css.sectionHeading}>Contacts</p>
       <Filter />
+      <ContactList />
       {isLoading && !error && (
         <Oval
           ariaLabel="loading-indicator"
@@ -37,9 +38,9 @@ export function App() {
           strokeWidthSecondary={1}
           color="blue"
           secondaryColor="white"
+          wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
         />
       )}
-      <ContactList />
       <ToastContainer />
     </div>
   );
