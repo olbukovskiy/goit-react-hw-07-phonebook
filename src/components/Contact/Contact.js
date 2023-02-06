@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 
-import { deleteContact } from 'redux/operations';
+import { useDeleteContactMutation } from 'redux/contactsApi';
 
 import { ListItem, Number, Button, TextField } from './Contact.styled';
 
 export default function Contact({ id, name, number }) {
-  const dispatch = useDispatch();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+
   const handleDelete = () => {
-    dispatch(deleteContact(id));
+    deleteContact(id);
   };
   return (
     <ListItem id={id}>
       <TextField>
         {name}: <Number> {number}</Number>
       </TextField>
-      <Button type="button" onClick={handleDelete}>
-        Delete
+      <Button type="button" onClick={handleDelete} disabled={isLoading}>
+        {isLoading ? 'Deleting...' : 'Delete'}
       </Button>
     </ListItem>
   );

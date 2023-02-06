@@ -1,10 +1,9 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { useAddContactMutation } from 'redux/contactsApi';
 
 import { FormInput, Label, Button, FormField } from './AddContact.styled';
 
@@ -13,9 +12,8 @@ const initialValues = {
   number: '',
 };
 
-export default function AddContact() {
-  const dispatch = useDispatch();
-  const { items: contactsList } = useSelector(selectContacts);
+export default function AddContact({ visibleContacts: contactsList }) {
+  const [addContact] = useAddContactMutation();
 
   const handleSubmit = ({ name, number }, actions) => {
     const check = contactsList.find(contact => contact.name === name);
@@ -28,7 +26,7 @@ export default function AddContact() {
       return;
     }
 
-    dispatch(addContact({ name, number }));
+    addContact({ name, number });
     actions.resetForm();
   };
   return (
@@ -61,3 +59,13 @@ export default function AddContact() {
     </Formik>
   );
 }
+
+AddContact.propTypes = {
+  visibleContacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+};
